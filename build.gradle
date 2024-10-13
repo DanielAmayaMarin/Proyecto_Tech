@@ -7,11 +7,11 @@ plugins {
 group = 'com.sistema'
 version = '0.0.1-SNAPSHOT'
 
-/*java {
+java {
 	toolchain {
-		languageVersion = JavaLanguageVersion.of(21)
+		languageVersion = JavaLanguageVersion.of(23)
 	}
-}*/
+}
 
 configurations {
 	compileOnly {

@@ -1,5 +1,6 @@
 package com.sistema.api.service;
 
+import com.sistema.api.model.Energia;
 import com.sistema.api.model.GestionDatos;
 import com.sistema.api.repository.GestionDatosRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +12,7 @@ public class GestionDatosService {
     @Autowired
     private GestionDatosRepository gestionDatosRepository;
 
+
     public List<GestionDatos> obtenerTodosGestionDatos() {
         return gestionDatosRepository.findAll();
     }
@@ -18,4 +20,7 @@ public class GestionDatosService {
     public GestionDatos guardarGestionDatos(GestionDatos gestionDatos) {
         return gestionDatosRepository.save(gestionDatos);
     }
+
+    public static GestionDatos actualizarGestionDatos(Long id, GestionDatos gestionDatos) {return GestionDatosRepository.put(gestionDatos);}
+
 }

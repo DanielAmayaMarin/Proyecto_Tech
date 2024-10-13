@@ -2,11 +2,12 @@ package com.sistema.api.model;
 
 import jakarta.persistence.*;
 import lombok.Data;
+import java.util.Set;
 
 @Data
 @Entity
 @Table(name = "energia")
-public class Energia {
+public class  Energia {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_energia")
@@ -27,9 +28,17 @@ public class Energia {
     @Column(name = "produccion")
     private Float produccion;
 
+    @ManyToMany
+    @JoinTable(name = "enegia_gestionDatos",
+            joinColumns = @JoinColumn(name = "energia_id"), inverseJoinColumns = @JoinColumn(name = "GestionDatos_id"))
+    private Set<GestionDatos> gestiondatos;
+
     @ManyToOne
     @JoinColumn(name = "usuario_cedula", referencedColumnName = "cedula")
     private Usuario usuario;
+
+    public  Energia(Energia energia) {
+    }
 
     // Getters and Setters
     public Integer getIdEnergia() {
