@@ -3,6 +3,8 @@ package com.sistema.api.model;
 import jakarta.persistence.*;
 import lombok.Data;
 
+import java.util.Set;
+
 @Data
 @Entity
 @Table(name = "gestiondatos")
@@ -42,6 +44,9 @@ public class GestionDatos {
     @ManyToOne
     @JoinColumn(name = "pais_id", referencedColumnName = "id")
     private Pais pais;
+
+    @ManyToMany(mappedBy = "gestiondatos")
+    private Set<Energia> energia;
 
     // Getters and Setters
     public Integer getIdGestionDatos() {

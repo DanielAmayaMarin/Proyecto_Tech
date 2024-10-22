@@ -3,6 +3,8 @@ package com.sistema.api.model;
 import jakarta.persistence.*;
 import lombok.Data;
 
+import java.util.Set;
+
 @Data
 @Entity
 @Table(name = "energia")
@@ -30,6 +32,11 @@ public class Energia {
     @ManyToOne
     @JoinColumn(name = "usuario_cedula", referencedColumnName = "cedula")
     private Usuario usuario;
+
+    @ManyToMany
+    @JoinTable(name = "enegia_gestionDatos",
+            joinColumns = @JoinColumn(name = "energia_id"), inverseJoinColumns = @JoinColumn(name = "GestionDatos_id"))
+    private Set<GestionDatos> gestiondatos;
 
     // Getters and Setters
     public Integer getIdEnergia() {
