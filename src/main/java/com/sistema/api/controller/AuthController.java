@@ -35,7 +35,7 @@ public class AuthController {
                     new UsernamePasswordAuthenticationToken(authenticationRequest.getEmail(), authenticationRequest.getPassword())
             );
         } catch (BadCredentialsException e) {
-            throw new Exception("Credenciales incorrectas", e);
+            return ResponseUtil.buildErrorResponse("Credenciales incorrectas "+ e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
         }
 
         final UserDetails userDetails = usuarioService.loadUserByUsername(authenticationRequest.getEmail());
