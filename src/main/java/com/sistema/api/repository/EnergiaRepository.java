@@ -7,10 +7,10 @@ import org.springframework.data.jpa.repository.Query;
 import java.util.List;
 
 public interface EnergiaRepository extends JpaRepository<Energia, Integer> {
-    @Query("SELECT e.tipo_energia, SUM(e.produccion) as totalProduccion FROM energia e WHERE e.anio = ?1 GROUP BY e.tipo_energia, e.pais ORDER BY totalProduccion DESC")
+    @Query("SELECT e.tipoEnergia, SUM(e.produccion) as totalProduccion FROM Energia e WHERE e.anio = ?1 GROUP BY e.tipoEnergia, e.pais ORDER BY totalProduccion DESC")
     List<Object[]> getProduccionTotalPorTipoYAnio(String anio);
 
-    @Query("SELECT e.pais, SUM(e.produccion) as totalProduccion FROM energia e WHERE e.tipo_energia = 'Eólica' AND e.anio = ?1 GROUP BY e.pais ORDER BY totalProduccion DESC")
+    @Query("SELECT e.pais, SUM(e.produccion) as totalProduccion FROM Energia e WHERE e.tipoEnergia = 'Eólica' AND e.anio = ?1 GROUP BY e.pais ORDER BY totalProduccion DESC")
     List<Object[]> getTop10PaisesProduccionEolica(String anio);
 
     @Query("SELECT SUM(e.produccion) / SUM(e.consumo) * 100 FROM Energia e WHERE e.anio = ?1 GROUP BY e.pais")
