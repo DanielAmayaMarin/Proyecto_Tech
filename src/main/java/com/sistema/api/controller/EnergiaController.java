@@ -3,12 +3,14 @@ package com.sistema.api.controller;
 
 import com.sistema.api.model.Energia;
 import com.sistema.api.service.EnergiaService;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/v1/energia")
+@SecurityRequirement(name = "bearerAuth")
 public class EnergiaController {
     @Autowired
     private EnergiaService energiaService;
