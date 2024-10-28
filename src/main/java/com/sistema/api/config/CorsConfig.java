@@ -14,26 +14,23 @@ public class CorsConfig {
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         CorsConfiguration config = new CorsConfiguration();
 
-        // Permite solicitudes desde cualquier origen
-        config.addAllowedOrigin("*");
+        // Allow requests from your frontend origin
+        config.addAllowedOrigin("http://localhost:4200");
 
-        // Permite solicitudes desde un solo lugar
-        //config.addAllowedOrigin("https://tu-frontend.com");
+        // Allow all headers
+        config.addAllowedHeader("*");
 
-        // Permite los métodos HTTP especificados
+        // Allow credentials
+        config.setAllowCredentials(true);
+
+        // Allow specific HTTP methods
         config.addAllowedMethod("GET");
         config.addAllowedMethod("POST");
         config.addAllowedMethod("PUT");
         config.addAllowedMethod("DELETE");
         config.addAllowedMethod("OPTIONS");
 
-        // Permite todos los encabezados
-        config.addAllowedHeader("*");
-
-        // Permite que las credenciales sean incluidas en la solicitud
-        config.setAllowCredentials(true);
-
-        // Aplica esta configuración a todas las rutas
+        // Apply this configuration to all paths
         source.registerCorsConfiguration("/**", config);
 
         return new CorsFilter(source);
