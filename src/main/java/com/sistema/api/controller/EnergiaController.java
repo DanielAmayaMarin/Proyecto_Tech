@@ -39,4 +39,9 @@ public class EnergiaController {
     public ResponseEntity<Energia> guardarEnergia(@RequestBody Energia energia) {
         return ResponseEntity.ok(energiaService.guardarEnergia(energia));
     }
+
+    @GetMapping("/energy-efficiency")
+    public ResponseEntity<?> getEnergyEfficiency(){
+        return ResponseEntity.ok(energiaService.getEnergyEfficiency());
+    }
 }

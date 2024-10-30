@@ -41,4 +41,10 @@ public class EnergiaService {
     public Energia guardarEnergia(Energia energia) {
         return energiaRepository.save(energia);
     }
+
+    @Transactional
+    public List<Object[]> getEnergyEfficiency(){
+        return  energiaRepository.getEnergyEfficiency();
+    }
+
 }

@@ -21,6 +21,8 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Date;
+
 @RestController
 @RequestMapping("/api/v1/auth")
 @Tag(name = "Autenticación", description = "API para autenticación y registro de usuarios")
@@ -50,7 +52,16 @@ public class AuthController {
         }
         final UserDetails userDetails = usuarioService.loadUserByUsername(authenticationRequest.getEmail());
         final String jwt = jwtUtil.generateToken(userDetails);
-        return ResponseUtil.buildSuccessResponse(jwt, "Inicio de sesión exitoso");
+        final Date expirationDate = jwtUtil.extractExpiration(jwt);
+        return ResponseUtil.buildAuthResponse(
+                HttpStatus.OK.value(),
+                jwt,
+                expirationDate,
+                "Inicio de sesión exitoso",
+                authenticationRequest.getEmail(),
+                HttpStatus.OK
+        );
+        //return ResponseUtil.buildSuccessResponse(jwt, "Inicio de sesión exitoso");
     }
 
     @PostMapping("/registro")
