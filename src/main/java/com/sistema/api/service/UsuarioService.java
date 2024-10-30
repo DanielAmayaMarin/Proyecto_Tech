@@ -36,7 +36,7 @@ public class UsuarioService implements UserDetailsService {
             throw new UsernameNotFoundException("Usuario ya se encuentra en la base de datos.");
         }
         usuario.setPassword(passwordEncoder.encode(usuario.getPassword()));
-        usuario.setRol("Usuario"); // Asigna un rol por defecto
+        usuario.setRol("Usuario");
         return usuarioRepository.save(usuario);
     }
 
