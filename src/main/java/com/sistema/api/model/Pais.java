@@ -1,44 +1,41 @@
 package com.sistema.api.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
+import java.util.ArrayList;
+import java.util.List;
 
-@Data
+@Getter
+@Setter
 @Entity
-@Table(name = "pais")
+@Table(name = "paises")
 public class Pais {
     @Id
-    @Column(name = "id", length = 10)
-    private String id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
 
-    @Column(name = "pais", length = 50)
-    private String pais;
+    @Column(name = "nombre", length = 50)
+    private String nombre;
 
-    @Column(name = "continente", length = 100)
-    private String continente;
+    @Column(name = "poblacion")
+    private Long poblacion;
 
-    // Getters and Setters
-    public String getId() {
-        return id;
-    }
+    @Column(name = "area_km2")
+    private Float areaKm2;
 
-    public void setId(String id) {
-        this.id = id;
-    }
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "continente_id")
+    @JsonBackReference
+    private Continentes continente;
 
-    public String getPais() {
-        return pais;
-    }
+    @OneToMany(mappedBy = "pais", cascade = CascadeType.ALL)
+    @JsonManagedReference
+    private List<ProduccionEnergia> producciones = new ArrayList<>();
 
-    public void setPais(String pais) {
-        this.pais = pais;
-    }
-
-    public String getContinente() {
-        return continente;
-    }
-
-    public void setContinente(String continente) {
-        this.continente = continente;
-    }
+    @OneToMany(mappedBy = "pais", cascade = CascadeType.ALL)
+    @JsonManagedReference
+    private List<ConsumoEnergia> consumos = new ArrayList<>();
 }
