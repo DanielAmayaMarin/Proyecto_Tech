@@ -2,6 +2,7 @@ package com.sistema.api.service;
 
 import com.sistema.api.dto.DashboardMetricasDTO;
 import com.sistema.api.dto.ProduccionPorEnergiaDTO;
+import com.sistema.api.dto.ProduccionRegionalDTO;
 import com.sistema.api.repository.DashboardRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -49,6 +50,24 @@ public class DashboardService {
                         (Integer) resultado[2],
                         (Float) resultado[3],
                         (String) resultado[4]
+                ))
+                .collect(Collectors.toList());
+    }
+
+
+    public List<ProduccionRegionalDTO> consumoEnergetico(){
+        List<Object[]> resultados = dashboardRepository.consumoEnergetico();
+
+        return resultados.stream()
+                .map(resultado -> new ProduccionRegionalDTO(
+                        (String) resultado[0],
+                        (Integer) resultado[1],
+                        (Integer) resultado[2],
+                        (Double) resultado[3],
+                        (Double) resultado[4],
+                        (Double) resultado[5],
+                        (Double) resultado[6],
+                        (Double) resultado[7]
                 ))
                 .collect(Collectors.toList());
     }

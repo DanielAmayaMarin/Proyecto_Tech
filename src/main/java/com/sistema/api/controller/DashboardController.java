@@ -33,4 +33,9 @@ public class DashboardController {
    public ResponseEntity<?> getProduccionPorEnergia() {
       return ResponseUtil.buildSuccessResponse(dashboardService.produccionPorEnergia(),"Producción por energia");
    }
+
+    @GetMapping("/consumo-energetico")
+    public ResponseEntity<?> getConsumoEnergetico() {
+        return ResponseUtil.buildSuccessResponse(dashboardService.consumoEnergetico(),"Consumo energetico");
+    }
 }
