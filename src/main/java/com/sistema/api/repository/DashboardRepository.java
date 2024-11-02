@@ -20,4 +20,7 @@ public interface DashboardRepository extends JpaRepository<ProduccionEnergia, In
     @Procedure(name="GetConsumoEnergetico")
     List<Object[]> consumoEnergetico ();
 
+    @Procedure(name="GetRenewableEnergyByRegion")
+    List<Object[]> energiasRenovablesPorRegion(@Param("anio") Integer anio);
+
 }

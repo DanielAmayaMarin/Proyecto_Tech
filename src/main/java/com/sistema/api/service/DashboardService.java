@@ -1,6 +1,7 @@
 package com.sistema.api.service;
 
 import com.sistema.api.dto.DashboardMetricasDTO;
+import com.sistema.api.dto.EnergiasRenovablesPorRegionDTO;
 import com.sistema.api.dto.ProduccionPorEnergiaDTO;
 import com.sistema.api.dto.ProduccionRegionalDTO;
 import com.sistema.api.repository.DashboardRepository;
@@ -68,6 +69,18 @@ public class DashboardService {
                         (Double) resultado[5],
                         (Double) resultado[6],
                         (Double) resultado[7]
+                ))
+                .collect(Collectors.toList());
+    }
+
+    public List<EnergiasRenovablesPorRegionDTO> energiasRenovablesPorRegion(Integer anio){
+        List<Object[]> resultados = dashboardRepository.energiasRenovablesPorRegion(anio);
+        return resultados.stream()
+                .map(resultado -> new EnergiasRenovablesPorRegionDTO(
+                        (String) resultado[0],
+                        (Double) resultado[1],
+                        (Double) resultado[2],
+                        (Double) resultado[3]
                 ))
                 .collect(Collectors.toList());
     }

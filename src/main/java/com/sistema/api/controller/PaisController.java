@@ -2,6 +2,7 @@ package com.sistema.api.controller;
 
 import com.sistema.api.model.Pais;
 import com.sistema.api.service.PaisService;
+import com.sistema.api.util.ResponseUtil;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -16,8 +17,8 @@ public class PaisController {
     private PaisService paisService;
 
     @GetMapping
-    public ResponseEntity<List<Pais>> obtenerTodosPaises() {
-        return ResponseEntity.ok(paisService.obtenerTodosPaises());
+    public ResponseEntity<?> obtenerTodosPaises() {
+        return ResponseUtil.buildSuccessResponse(paisService.obtenerTodosPaises(),"Consulta paises");
     }
 
     @PostMapping

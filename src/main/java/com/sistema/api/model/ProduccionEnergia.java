@@ -29,6 +29,13 @@ import java.time.LocalDateTime;
         name = "GetConsumoEnergetico",
         procedureName = "GetConsumoEnergetico"
 )
+@NamedStoredProcedureQuery(
+        name = "GetRenewableEnergyByRegion",
+        procedureName = "GetRenewableEnergyByRegion",
+        parameters = {
+                @StoredProcedureParameter(mode = ParameterMode.IN, name = "anio", type = Integer.class)
+        }
+)
 
 @Table(name = "produccionenergia")
 public class ProduccionEnergia {

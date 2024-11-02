@@ -98,7 +98,7 @@ public class UsuarioService implements UserDetailsService {
             return null;
         }
 
-        String carpetaImagenes = "/Users/macboockprochm3572/Documents/imagenes_perfil/";
+        String carpetaImagenes = "/Users/chm3572/Documents/imagenes_perfil/";
         Files.createDirectories(Paths.get(carpetaImagenes));
 
         String nombreArchivo = cedula + "_" + System.currentTimeMillis() + "_" + imagen.getOriginalFilename();

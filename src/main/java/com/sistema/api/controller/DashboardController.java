@@ -38,4 +38,9 @@ public class DashboardController {
     public ResponseEntity<?> getConsumoEnergetico() {
         return ResponseUtil.buildSuccessResponse(dashboardService.consumoEnergetico(),"Consumo energetico");
     }
+
+    @GetMapping("/energias-renovables-por-region/{anio}")
+    public ResponseEntity<?> getEnergiasRenovablesPorRegion(@PathVariable Integer anio) {
+        return ResponseUtil.buildSuccessResponse(dashboardService.energiasRenovablesPorRegion(anio),"Energias renovables");
+    }
 }

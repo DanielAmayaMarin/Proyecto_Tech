@@ -1,6 +1,7 @@
 package com.sistema.api.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.Getter;
@@ -11,6 +12,12 @@ import java.util.List;
 @Getter
 @Setter
 @Entity
+@NamedStoredProcedureQuery(
+        name = "GetPaises",
+        procedureName = "GetPaises"
+)
+
+
 @Table(name = "paises")
 public class Pais {
     @Id
@@ -28,14 +35,14 @@ public class Pais {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "continente_id")
-    @JsonBackReference
+    @JsonIgnoreProperties("paises")
     private Continentes continente;
 
     @OneToMany(mappedBy = "pais", cascade = CascadeType.ALL)
-    @JsonManagedReference
+    @JsonIgnoreProperties("pais")
     private List<ProduccionEnergia> producciones = new ArrayList<>();
 
     @OneToMany(mappedBy = "pais", cascade = CascadeType.ALL)
-    @JsonManagedReference
+    @JsonIgnoreProperties("pais")
     private List<ConsumoEnergia> consumos = new ArrayList<>();
 }
